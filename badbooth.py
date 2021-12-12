@@ -35,7 +35,6 @@ if config:
     max_height = config.getint("Video","height")
     fullscreen = config.getint("Video","fullscreen")
     background = config.get("General","background")
-    overlay = config.get("General","overlay")
     booth_title = config.get("General","title")
 else:
     # paths
@@ -45,7 +44,6 @@ else:
     max_width = 1440
     max_height = 900
     background = 'bg.jpg'
-    overlay = 'overlay.png'             # not supported
     booth_title = "Photo Booth"
 
 screen = pygame.display.set_mode((max_width,max_height), DOUBLEBUF)
@@ -171,9 +169,6 @@ def photostuff(dev_idx):
     s_photo = True
     # start countdown
     countdown()
-    # use overlay
-    if os.path.exists(overlay):
-        overlay = pygame.image.load(overlay).convert_alpha()
     # take photo
     outfile = time.strftime('%Y%m%d-%H%M%S', time.localtime())
     result = takephoto(dev_idx)
